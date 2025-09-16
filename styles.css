@@ -1,0 +1,245 @@
+* {
+ 	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f7f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+    padding: 1.5rem;
+    width: 100%;
+    background-color: #333333;
+    color: #ffffff;
+    margin: 0 auto;
+}
+header h1 {
+    font-size: 300%;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+}
+#add-tasklist {
+  display: flex;
+  gap: 8px; /* space between input and button */
+  margin-top: 8px;
+  margin-left: 4rem;
+}
+
+#add-tasklist input {
+  flex: 1; /* make input take up remaining space */
+  padding: 10px 12px;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #ffffff;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+#add-tasklist input:focus {
+  border-color: #555555;
+}
+
+#add-tasklist button {
+  padding: 10px 16px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #333333;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#add-tasklist button:hover {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+main {
+    padding: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    list-style: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.task-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    background-color: #333333;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 10px;
+    height: 61px;
+}
+.task-list-header h1 {
+    font-size: 150%;
+    font-weight: 400;
+    margin: auto 0;
+    margin-left: 6px;
+}
+#tasks-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+#todo ul {
+    margin-bottom: 3rem;
+}
+.option {
+    padding: 0.5rem;
+}
+
+.add-task {
+  display: flex;
+  gap: 8px; /* space between input and button */
+}
+
+.add-task input {
+  flex: 1; /* make input take up remaining space */
+  padding: 10px 12px;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #ffffff;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.add-task input:focus {
+  border-color: #555555;
+}
+
+.add-task button {
+  padding: 10px 16px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #333333;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-task button:hover {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.add-task.hidden {
+  display: none;
+}
+
+.toggle-add-task {
+  margin-left: 8px;
+  cursor: pointer;
+  border: none;
+  background: #333333;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 140%;
+}
+
+.taskHeaderOption {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: auto 0;
+}
+
+#clear-all {
+  margin-left: auto;
+}
+
+#clear-all-btn {
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #333333;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#clear-all-btn:hover {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+#clear-done-btn {
+  margin-top: 2px;
+  padding: 10px 16px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #333333;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#clear-done-btn:hover {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.flex {
+  display: flex;
+  gap: 8px;
+}
+
+.circle {
+  margin-top: 2px;
+  height: 18px;
+  width: 18px;
+  border: 1px solid black;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, border 0.2s ease;
+}
+
+.circle:hover {
+  background-color: #333333;
+  border: 1px solid #333333;
+}
+
+.cross {
+  transition: transform 0.3s linear;
+}
+
+.cross:hover {
+  transform: rotate(180deg) translate(0, -2px);
+}
+
+.new-task {
+  width: 150px;
+}
