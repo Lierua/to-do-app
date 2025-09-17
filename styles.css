@@ -69,7 +69,7 @@ header h1 {
 
 main {
     padding: 1.5rem;
-    max-width: 1000px;
+    width: 1150px;
     margin: 0 auto;
 }
 
@@ -93,7 +93,7 @@ li {
     color: #ffffff;
     padding: 0.5rem;
     border-radius: 10px;
-    height: 61px;
+    height: 60px;
 }
 .task-list-header h1 {
     font-size: 150%;
@@ -101,12 +101,24 @@ li {
     margin: auto 0;
     margin-left: 6px;
 }
+
+.task-list-header .cross {
+  margin-top: 10px;
+  height: 20px;
+}
+
 #tasks-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
 }
 
+#todo {
+  overflow: hidden;
+}
+#done {
+  overflow: hidden;
+}
 #todo ul {
     margin-bottom: 3rem;
 }
@@ -170,7 +182,8 @@ li {
 .taskHeaderOption {
   display: flex;
   flex-direction: row-reverse;
-  margin: auto 0;
+  /* margin: auto 0; */
+  margin-right: 1rem;
 }
 
 #clear-all {
@@ -242,4 +255,43 @@ li {
 
 .new-task {
   width: 150px;
+}
+
+.moveout-right {
+  animation: moveout-right 0.8s ease-in forwards;
+}
+
+@keyframes moveout-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(110%);
+  }
+}
+
+.moveout-left {
+  animation: moveout-left 0.8s ease-in forwards;
+}
+
+@keyframes moveout-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-110%);
+  }
+}
+
+.comein-left {
+  animation: comein-left 0.8s ease-in forwards;
+}
+
+@keyframes comein-left {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

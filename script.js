@@ -2,12 +2,22 @@
 // INITIAL SETUP
  
 let todoArray = JSON.parse(localStorage.getItem("taskList")) || [
-  { "Task List": ["To do 1", "To do 2", "To do 3"] }
+  { "Task List": [] }
 ];
 
 let doneArray = JSON.parse(localStorage.getItem("done")) || [
   "did 1", "did 2", "did 3"
 ];
+
+// GLOBAL COOLDOWN FLAG
+let isCooldown = false;
+
+function startCooldown() {
+  isCooldown = true;
+  setTimeout(() => {
+    isCooldown = false;
+  }, 1000);
+}
  
 // LOCALSTORAGE FUNCTIONS
  
@@ -43,6 +53,8 @@ function renderTodo() {
         <div class="task-list-header">
           <h1>${key}</h1>
           <div class="taskHeaderOption">
+            <!-- cross for removing the whole list -->
+            <div class="cross remove-list" data-list="${listIndex}">&#10005;</div>
             <button class="toggle-add-task" data-listnumber="${listIndex}">＋</button>
             <div class="add-task hidden">
               <input type="text" class="new-task" data-listnumber="${listIndex}" placeholder="New task">
@@ -55,7 +67,8 @@ function renderTodo() {
             ${item}
             <div class="flex">
               <div class="circle" data-list="${listIndex}" data-task="${taskIndex}"></div>
-              <div class="cross" data-list="${listIndex}" data-task="${taskIndex}">&#10005;</div>
+              <!-- cross for removing a single task -->
+              <div class="cross remove-task" data-list="${listIndex}" data-task="${taskIndex}">&#10005;</div>
             </div>
           </li>
         `).join("")}
@@ -65,6 +78,7 @@ function renderTodo() {
 
   attachListeners();
 }
+
 
 const doneList = document.querySelector("#done");
 function renderDone() {
@@ -153,38 +167,73 @@ function attachListeners() {
   });
 
   // Delete single tasks
-  const clearTaskBtns = document.querySelectorAll(".cross");
-  clearTaskBtns.forEach(btn => {
-    btn.addEventListener("mousedown", () => {
-      const listIndex = parseInt(btn.dataset.list, 10);
-      const taskIndex = parseInt(btn.dataset.task, 10);
+const clearTaskBtns = document.querySelectorAll(".remove-task");
+clearTaskBtns.forEach(btn => {
+  btn.addEventListener("mousedown", () => {
+    if (isCooldown) return; // block if cooldown is active
+    startCooldown();
 
+    const listIndex = parseInt(btn.dataset.list, 10);
+    const taskIndex = parseInt(btn.dataset.task, 10);
+
+    const li = btn.closest("li");
+    li.classList.add("moveout-left");
+
+    li.addEventListener("animationend", () => {
       const key = Object.keys(todoArray[listIndex])[0];
       todoArray[listIndex][key].splice(taskIndex, 1);
 
       saveTodos();
       renderTodo();
-    });
+    }, { once: true });
   });
+});
 
-    // Done single task
-  const doneTaskBtns = document.querySelectorAll(".circle");
-  doneTaskBtns.forEach(btn => {
-    btn.addEventListener("mousedown", () => {
-      const listIndex = parseInt(btn.dataset.list, 10);
-      const taskIndex = parseInt(btn.dataset.task, 10);
+// Done single task
+const doneTaskBtns = document.querySelectorAll(".circle");
+doneTaskBtns.forEach(btn => {
+  btn.addEventListener("mousedown", () => {
+    if (isCooldown) return; // block if cooldown is active
+    startCooldown();
 
+    const listIndex = parseInt(btn.dataset.list, 10);
+    const taskIndex = parseInt(btn.dataset.task, 10);
+
+    const li = btn.closest("li");
+    li.classList.add("moveout-right");
+
+    li.addEventListener("animationend", () => {
       const key = Object.keys(todoArray[listIndex])[0];
-      const task = todoArray[listIndex][key].splice(taskIndex, 1)[0]; // remove task
+      const task = todoArray[listIndex][key].splice(taskIndex, 1)[0]; 
 
-      doneArray.push(task); // add to done array
+      doneArray.push(task); 
       saveTodos();
       saveDone();
 
       renderTodo();
       renderDone();
-    });
+
+      const doneItems = doneList.querySelectorAll("li");
+      const newDoneLi = doneItems[doneItems.length - 1];
+      newDoneLi.classList.add("comein-left");
+    }, { once: true });
   });
+});
+
+// Remove a whole list
+const removeListBtns = document.querySelectorAll(".remove-list");
+removeListBtns.forEach(btn => {
+  btn.addEventListener("mousedown", () => {
+    if (isCooldown) return; // block if cooldown is active
+    startCooldown();
+
+    const listIndex = parseInt(btn.dataset.list, 10);
+    todoArray.splice(listIndex, 1); 
+    saveTodos();
+    renderTodo();
+  });
+});
+
 }
  
 // ADD TODO
@@ -207,13 +256,11 @@ function addTodo(listIndex, input) {
 const clearAllBtn = document.querySelector("#clear-all-btn");
 clearAllBtn.addEventListener("mousedown", () => {
   todoArray = [
-    { "Task List": ["To do 1", "To do 2", "To do 3"] },
+    { "Task List": [] },
   ];
   saveTodos();
   renderTodo();
 });
-
-
 
 
 // INITIAL RENDER
