@@ -259,6 +259,9 @@ clearAllBtn.addEventListener("mousedown", () => {
   doneArray = [];
   saveTodos();
   renderTodo();
+  
+  saveDoneo();
+  renderDone();
 });
 
 
