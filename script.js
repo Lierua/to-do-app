@@ -260,7 +260,7 @@ clearAllBtn.addEventListener("mousedown", () => {
   saveTodos();
   renderTodo();
   
-  saveDoneo();
+  saveDone();
   renderDone();
 });
 
