@@ -5,7 +5,7 @@ let todoArray = JSON.parse(localStorage.getItem("taskList")) || [
   { "Task List": [] }
 ];
 
-let doneArray = JSON.parse(localStorage.getItem("done")) || [""];
+let doneArray = JSON.parse(localStorage.getItem("done")) || [];
 
 // GLOBAL COOLDOWN FLAG
 let isCooldown = false;
