@@ -14,7 +14,7 @@ function startCooldown() {
   isCooldown = true;
   setTimeout(() => {
     isCooldown = false;
-  }, 1000);
+  }, 600);
 }
  
 // LOCALSTORAGE FUNCTIONS
@@ -183,7 +183,7 @@ clearTaskBtns.forEach(btn => {
 
       saveTodos();
       renderTodo();
-    }, { once: true });
+    });
   });
 });
 
@@ -214,7 +214,7 @@ doneTaskBtns.forEach(btn => {
       const doneItems = doneList.querySelectorAll("li");
       const newDoneLi = doneItems[doneItems.length - 1];
       newDoneLi.classList.add("comein-left");
-    }, { once: true });
+    });
   });
 });
 

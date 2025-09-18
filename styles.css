@@ -258,7 +258,7 @@ li {
 }
 
 .moveout-right {
-  animation: moveout-right 0.8s ease-in forwards;
+  animation: moveout-right 0.6s ease-in forwards;
 }
 
 @keyframes moveout-right {
@@ -271,7 +271,7 @@ li {
 }
 
 .moveout-left {
-  animation: moveout-left 0.8s ease-in forwards;
+  animation: moveout-left 0.6s ease-in forwards;
 }
 
 @keyframes moveout-left {
@@ -284,7 +284,7 @@ li {
 }
 
 .comein-left {
-  animation: comein-left 0.8s ease-in forwards;
+  animation: comein-left 0.6s ease-in forwards;
 }
 
 @keyframes comein-left {
